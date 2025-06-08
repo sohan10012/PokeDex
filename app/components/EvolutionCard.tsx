@@ -132,11 +132,11 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
     <div className="max-w-sm mx-auto">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
-        className="relative rounded-2xl shadow-2xl border-4 overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        className="relative rounded-3xl shadow-2xl border-4 overflow-hidden transform hover:scale-105 transition-transform duration-300"
         style={{ 
           aspectRatio: '2.5/3.5',
           background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 25%, #ff6b6b 50%, #ffd93d 75%, #ff6b6b 100%)',
-          borderImage: 'linear-gradient(45deg, #ff6b6b, #ffd93d, #ff6b6b) 1',
+          borderColor: '#fbbf24',
           boxShadow: '0 25px 50px -12px rgba(255, 107, 107, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
         }}
       >
@@ -152,12 +152,12 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
         {/* Header Section with Pokemon Logo Style */}
         <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-4 relative border-b-4 border-yellow-400">
           {/* Pokemon ID */}
-          <div className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white">
+          <div className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white z-10">
             #{pokemon.id.toString().padStart(3, '0')}
           </div>
           
           {/* Evolution Stage Badge */}
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2">
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
             <div className={`bg-gradient-to-r ${getStageColor(pokemon.stage)} text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white flex items-center gap-1`}>
               <span>{getStageIcon(pokemon.stage)}</span>
               {getStageName(pokemon.stage)}
@@ -165,7 +165,7 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
           </div>
           
           {/* Rarity Stars */}
-          <div className={`absolute top-2 right-2 text-2xl font-bold drop-shadow-lg ${getRarityColor(pokemon.base_experience)}`}>
+          <div className={`absolute top-2 right-2 text-2xl font-bold drop-shadow-lg ${getRarityColor(pokemon.base_experience)} z-10`}>
             {getRarityStars(pokemon.base_experience)}
           </div>
 
@@ -176,7 +176,7 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
           </h2>
 
           {/* HP with Heart */}
-          <div className="absolute top-12 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1">
+          <div className="absolute top-12 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1 z-10">
             ❤️ {getStatValue('hp')}
           </div>
         </div>
@@ -219,11 +219,13 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
                 
                 {/* Pokemon Image - Large */}
                 <div className="relative z-10 flex justify-center">
-                  <div className="bg-white rounded-full p-4 shadow-lg border-4 border-yellow-300">
+                  <div className="bg-white rounded-full p-4 shadow-lg border-4 border-yellow-300 relative">
+                    {/* Bottom border decoration */}
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-yellow-400 via-red-400 to-yellow-400 rounded-full shadow-lg"></div>
                     <img
                       src={pokemon.sprites.front_default}
                       alt={pokemon.name}
-                      className="w-32 h-32 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
+                      className="w-32 h-32 sm:w-40 sm:h-40 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
                       style={{
                         filter: 'drop-shadow(0 0 20px rgba(255, 217, 61, 0.5)) brightness(1.1) contrast(1.25) saturate(1.1)'
                       }}
@@ -239,80 +241,25 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
             </div>
           </div>
 
-          {/* Evolution Level Info */}
-          {pokemon.min_level && (
-            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-2 mb-3 text-center border-2 border-white shadow-lg">
-              <div className="text-white font-bold text-sm flex items-center justify-center gap-2">
-                🌟 Evolves at Level {pokemon.min_level} 🌟
+          {/* Evolution Info */}
+          <div className="mt-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 text-white border-4 border-yellow-400">
+            <div className="text-yellow-300 text-xs font-bold mb-2 text-center">EVOLUTION INFO</div>
+            <div className="bg-gray-700/50 rounded-lg p-3 text-center">
+              <div className="text-white text-sm font-semibold">
+                {pokemon.min_level ? (
+                  <span>Evolves at Level {pokemon.min_level}</span>
+                ) : (
+                  <span>Final Evolution Stage</span>
+                )}
               </div>
-            </div>
-          )}
-
-          {/* Pokemon Physical Info */}
-          <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded-lg p-3 mb-3 border-2 border-red-200 shadow-sm">
-            <div className="grid grid-cols-3 gap-2 text-xs">
-              <div className="text-center">
-                <div className="font-bold text-red-600">Height</div>
-                <div className="text-gray-800 font-semibold">{pokemon.height / 10}m</div>
-              </div>
-              <div className="text-center border-l border-r border-red-300">
-                <div className="font-bold text-red-600">Weight</div>
-                <div className="text-gray-800 font-semibold">{pokemon.weight / 10}kg</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-red-600">Base EXP</div>
-                <div className="text-gray-800 font-semibold">{pokemon.base_experience}</div>
-              </div>
-            </div>
-          </div>
-
-          {/* All Pokemon Stats */}
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 text-white mb-3 border-4 border-yellow-400">
-            <h4 className="text-center font-bold text-sm mb-3 text-yellow-400 flex items-center justify-center gap-2">
-              ⚔️ EVOLUTION STATS ⚔️
-            </h4>
-            <div className="space-y-2">
-              {pokemon.stats.map((statData) => {
-                const statName = statData.stat.name;
-                const value = statData.base_stat;
-                const displayName = statName.split('-').map(word => 
-                  word.charAt(0).toUpperCase() + word.slice(1)
-                ).join(' ');
-                
-                return (
-                  <div key={statName} className="flex items-center gap-2">
-                    <span className="text-xs font-semibold w-16 text-yellow-300 uppercase">
-                      {displayName.substring(0, 6)}
-                    </span>
-                    <div className="flex-1 bg-gray-700 rounded-full h-3 relative overflow-hidden border border-gray-600">
-                      <div 
-                        className={`h-full ${getStatColor(statName)} transition-all duration-700 rounded-full relative`}
-                        style={{ width: `${getStatBar(value)}%` }}
-                      >
-                        <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                      </div>
-                    </div>
-                    <span className="text-xs font-bold w-8 text-right text-white bg-gray-700 px-1 rounded">
-                      {value}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            
-            {/* Total Stats */}
-            <div className="mt-3 pt-3 border-t-2 border-yellow-400">
-              <div className="flex justify-between items-center">
-                <span className="text-yellow-400 font-bold text-sm">TOTAL POWER:</span>
-                <span className="text-white font-bold text-lg bg-red-600 px-3 py-1 rounded-full">
-                  {totalStats}
-                </span>
+              <div className="text-gray-300 text-xs mt-1">
+                Stage {pokemon.stage} Evolution
               </div>
             </div>
           </div>
 
           {/* Footer with Evolution Branding */}
-          <div className="mt-auto bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-lg p-3 text-center border-2 border-white">
+          <div className="mt-4 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-lg p-3 text-center border-2 border-white">
             <div className="text-white text-sm font-bold flex items-center justify-center gap-2">
               🔄 EVOLUTION CARD 🔄
             </div>
@@ -327,13 +274,6 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
         <div className="absolute top-0 right-0 w-6 h-6 border-r-4 border-t-4 border-yellow-400 rounded-tr-xl bg-red-500/20" />
         <div className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
         <div className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
-
-        {/* Evolution symbol decoration */}
-        <div className="absolute top-4 right-4 w-8 h-8 opacity-30">
-          <div className="w-full h-full bg-purple-500 rounded-full relative border-2 border-white flex items-center justify-center">
-            <span className="text-white text-xs font-bold">🔄</span>
-          </div>
-        </div>
       </div>
 
       <style jsx>{`

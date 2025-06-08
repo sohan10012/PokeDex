@@ -103,7 +103,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
     <div className="max-w-sm mx-auto">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
-        className="relative rounded-2xl shadow-2xl border-4 overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        className="relative rounded-3xl shadow-2xl border-4 overflow-hidden transform hover:scale-105 transition-transform duration-300"
         style={{ 
           aspectRatio: '2.5/3.5',
           background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 25%, #ff6b6b 50%, #ffd93d 75%, #ff6b6b 100%)',
@@ -123,23 +123,23 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         {/* Header Section with Pokemon Logo Style */}
         <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-4 relative border-b-4 border-yellow-400">
           {/* Pokemon ID */}
-          <div className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white">
+          <div className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white z-10">
             #{pokemon.id.toString().padStart(3, '0')}
           </div>
           
-          {/* Rarity Stars */}
-          <div className={`absolute top-2 right-2 text-2xl font-bold drop-shadow-lg ${getRarityColor(pokemon.base_experience)}`}>
+          {/* Rarity Stars - Moved to top right with proper z-index */}
+          <div className={`absolute top-2 right-2 text-2xl font-bold drop-shadow-lg ${getRarityColor(pokemon.base_experience)} z-10`}>
             {getRarityStars(pokemon.base_experience)}
           </div>
 
           {/* Pokemon Name */}
-          <h2 className="text-center text-white text-2xl font-bold mt-6 drop-shadow-lg capitalize tracking-wide" 
+          <h2 className="text-center text-white text-2xl font-bold mt-8 drop-shadow-lg capitalize tracking-wide" 
               style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
             {pokemon.name}
           </h2>
 
           {/* HP with Heart */}
-          <div className="absolute top-12 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1">
+          <div className="absolute top-12 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1 z-10">
             ❤️ {getStatValue('hp')}
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
                   </div>
                 </div>
                 
-                {/* Pokemon Image - Much Larger */}
+                {/* Pokemon Image - Large */}
                 <div className="relative z-10 flex justify-center">
                   <div className="bg-white rounded-full p-4 shadow-lg border-4 border-yellow-300">
                     <img
@@ -254,13 +254,40 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
               })}
             </div>
             
-            {/* Total Stats */}
-            <div className="mt-3 pt-3 border-t-2 border-yellow-400">
-              <div className="flex justify-between items-center">
-                <span className="text-yellow-400 font-bold text-sm">TOTAL POWER:</span>
-                <span className="text-white font-bold text-lg bg-red-600 px-3 py-1 rounded-full">
-                  {totalStats}
-                </span>
+            {/* Additional Stats */}
+            <div className="mt-4 pt-4 border-t-2 border-yellow-400">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-gray-700/50 rounded-lg p-2">
+                  <div className="text-yellow-300 text-xs font-bold mb-1">Base Experience</div>
+                  <div className="text-white text-sm font-semibold">{pokemon.base_experience}</div>
+                </div>
+                <div className="bg-gray-700/50 rounded-lg p-2">
+                  <div className="text-yellow-300 text-xs font-bold mb-1">Total Stats</div>
+                  <div className="text-white text-sm font-semibold">{totalStats}</div>
+                </div>
+                <div className="bg-gray-700/50 rounded-lg p-2">
+                  <div className="text-yellow-300 text-xs font-bold mb-1">Height</div>
+                  <div className="text-white text-sm font-semibold">{(pokemon.height / 10).toFixed(1)}m</div>
+                </div>
+                <div className="bg-gray-700/50 rounded-lg p-2">
+                  <div className="text-yellow-300 text-xs font-bold mb-1">Weight</div>
+                  <div className="text-white text-sm font-semibold">{(pokemon.weight / 10).toFixed(1)}kg</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Type Effectiveness */}
+            <div className="mt-4 pt-4 border-t-2 border-yellow-400">
+              <div className="text-yellow-300 text-xs font-bold mb-2 text-center">TYPE EFFECTIVENESS</div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {pokemon.types.map((type, index) => (
+                  <div
+                    key={index}
+                    className={`bg-gradient-to-r ${getTypeColor(type.type.name)} px-3 py-1 rounded-full text-xs font-bold text-white shadow-md border border-white/20`}
+                  >
+                    {type.type.name.toUpperCase()}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -282,8 +309,8 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         <div className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
         <div className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
 
-        {/* Pokeball decoration */}
-        <div className="absolute top-4 right-4 w-8 h-8 opacity-30">
+        {/* Pokeball decoration - Moved to bottom right with proper z-index */}
+        <div className="absolute bottom-4 right-4 w-8 h-8 opacity-30 z-10">
           <div className="w-full h-full bg-red-500 rounded-full relative border-2 border-white">
             <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white transform -translate-y-1/2" />
             <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-gray-300" />

@@ -1,4 +1,4 @@
-// File: /home/Sohan/codes/Pokemon/app/page.tsx
+// File: C:\codes\Pokemon\PokeDex\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

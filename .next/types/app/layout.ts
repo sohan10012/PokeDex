@@ -1,4 +1,4 @@
-// File: /home/Sohan/codes/Pokemon/app/layout.tsx
+// File: C:\codes\Pokemon\PokeDex\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
