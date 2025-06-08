@@ -69,9 +69,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   };
 
   const getRarityColor = (baseExp: number) => {
-    if (baseExp < 100) return 'text-gray-500';
-    if (baseExp < 200) return 'text-yellow-500';
-    return 'text-red-500';
+    return 'text-white';
   };
 
   const getStatValue = (statName: string) => {
@@ -103,11 +101,10 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
     <div className="max-w-sm mx-auto">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
-        className="relative rounded-3xl shadow-2xl border-4 overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        className="relative rounded-md shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
         style={{ 
           aspectRatio: '2.5/3.5',
           background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 25%, #ff6b6b 50%, #ffd93d 75%, #ff6b6b 100%)',
-          borderImage: 'linear-gradient(45deg, #ff6b6b, #ffd93d, #ff6b6b) 1',
           boxShadow: '0 25px 50px -12px rgba(255, 107, 107, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
         }}
       >
@@ -133,9 +130,12 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
           </div>
 
           {/* Pokemon Name */}
-          <h2 className="text-center text-white text-2xl font-bold mt-8 drop-shadow-lg capitalize tracking-wide" 
-              style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-            {pokemon.name}
+          <h2 className="text-center text-white text-3xl font-bold mt-8 drop-shadow-lg tracking-wide" 
+              style={{ 
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                fontFamily: 'Helvetica, Arial, sans-serif'
+              }}>
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </h2>
 
           {/* HP with Heart */}
@@ -304,10 +304,10 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         </div>
 
         {/* Enhanced Corner Decorations */}
-        <div className="absolute top-0 left-0 w-6 h-6 border-l-4 border-t-4 border-yellow-400 rounded-tl-xl bg-red-500/20" />
-        <div className="absolute top-0 right-0 w-6 h-6 border-r-4 border-t-4 border-yellow-400 rounded-tr-xl bg-red-500/20" />
-        <div className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
-        <div className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-yellow-400 rounded-bl-xl bg-red-500/20" />
+        <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-yellow-400 z-20 rounded-tl-md" />
+        <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-yellow-400 z-20 rounded-tr-md" />
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-yellow-400 z-20 rounded-bl-md" />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-yellow-400 z-20 rounded-br-md" />
 
         {/* Pokeball decoration - Moved to bottom right with proper z-index */}
         <div className="absolute bottom-4 right-4 w-8 h-8 opacity-30 z-10">
