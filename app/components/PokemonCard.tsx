@@ -99,10 +99,10 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
 
   return (
    
-    <div className="max-w-sm mx-4 sm:mx-auto p-1 rounded-md shadow-2xl">
+    <div className="max-w-sm mx-4 sm:mx-auto p-2 border-2 border-yellow-400 rounded-md shadow-2xl">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
-        className="relative rounded-md shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        className="relative rounded-md shadow-2xl transform hover:scale-105 transition-transform duration-300"
         style={{ 
           aspectRatio: '2.5/3.5',
           background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 25%, #ff6b6b 50%, #ffd93d 75%, #ff6b6b 100%)',
@@ -119,7 +119,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         />
 
         {/* Header Section with Pokemon Logo Style */}
-        <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-4 relative border-b-4 border-yellow-400">
+        <div className=" border-b-2 rounded-md bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-4 relative ">
           {/* Pokemon ID */}
           <div className="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border-2 border-white z-10">
             #{pokemon.id.toString().padStart(3, '0')}
@@ -131,7 +131,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
           </div>
 
           {/* Pokemon Name */}
-          <h2 className="text-center text-white text-3xl font-bold mt-8 drop-shadow-lg tracking-wide" 
+          <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mt-8 drop-shadow-lg tracking-wide" 
               style={{ 
                 textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
                 fontFamily: 'Helvetica, Arial, sans-serif'
@@ -140,8 +140,8 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
           </h2>
 
           {/* HP with Heart */}
-          <div className="absolute top-12 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1 z-10">
-            ❤️ {getStatValue('hp')}
+          <div className="absolute top-12 bg-red-600 right-1 sm:right-2 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg border-2 border-white flex items-center gap-1 z-10">
+            🤍 {getStatValue('hp')}
           </div>
         </div>
 

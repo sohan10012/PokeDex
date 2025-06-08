@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch, loading }: SearchBarProps) {
   };
 
   return (
-    <div className="w-full max-w-[280px] sm:max-w-2xl mx-1 sm:mx-4 px-1 sm:px-4">
+    <div className="w-full max-w-[280px] sm:max-w-2xl sm:mx-4 sm:px-4">
       <form onSubmit={handleSubmit} className="relative">
         <div className="relative group">
           <input

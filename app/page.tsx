@@ -383,7 +383,7 @@ export default function Home() {
                     ⚔️ {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} Details ⚔️
                   </h2>
                   
-                  {/* Base Stats */}
+                  
                   <div className="mb-4 sm:mb-6">
                     <h3 className="text-base sm:text-lg font-bold text-yellow-300 mb-2 sm:mb-3">Base Stats</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -408,7 +408,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Physical Characteristics */}
+                 
                   <div className="mb-4 sm:mb-6">
                     <h3 className="text-base sm:text-lg font-bold text-yellow-300 mb-2 sm:mb-3">Physical Characteristics</h3>
                     <div className="grid grid-cols-3 gap-3">
@@ -427,7 +427,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Total Power */}
+                  
                   <div className="bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-lg p-3 text-center">
                     <div className="text-gray-800 text-sm mb-1">Total Power</div>
                     <div className="text-gray-900 font-bold text-lg sm:text-xl">

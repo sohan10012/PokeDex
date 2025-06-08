@@ -127,27 +127,18 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
   const totalStats = pokemon.stats.reduce((sum, stat) => sum + stat.base_stat, 0);
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto ">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
-        className="relative rounded-md shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        className="relative rounded-md shadow-2xl transform hover:scale-105 transition-transform duration-300"
         style={{ 
           aspectRatio: '2.5/3.5',
           background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 25%, #ff6b6b 50%, #ffd93d 75%, #ff6b6b 100%)',
           boxShadow: '0 25px 50px -12px rgba(255, 107, 107, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
         }}
       >
-        {/* Enhanced Holographic overlay effect */}
-        <div 
-          className="absolute inset-0 opacity-30 pointer-events-none rounded-md"
-          style={{
-            background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%), linear-gradient(-45deg, transparent 30%, rgba(255,217,61,0.4) 50%, transparent 70%)',
-            animation: 'shimmer 3s ease-in-out infinite'
-          }}
-        />
-
         {/* Header Section with Pokemon Logo Style */}
-        <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-3 relative border-b-4 border-yellow-400 rounded-t-md">
+        <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 p-3 relative rounded-t-md">
           {/* Pokemon ID */}
           <div className="absolute top-1 left-1 bg-blue-600 text-white px-2 py-0.5 rounded-full text-xs font-bold shadow-lg border-2 border-white z-10">
             #{pokemon.id.toString().padStart(3, '0')}
@@ -177,12 +168,20 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
 
           {/* HP with Heart */}
           <div className="absolute top-10 right-1 bg-red-600 text-white px-2 py-0.5 rounded-full text-xs font-bold shadow-lg border-2 border-white flex items-center gap-1 z-10">
-            ❤️ {getStatValue('hp')}
+            🤍 {getStatValue('hp')}
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="p-3 flex-1 flex flex-col bg-gradient-to-b from-white via-yellow-50 to-red-50">
+        <div className="p-3 flex-1 flex flex-col bg-gradient-to-b from-white via-yellow-50 to-red-50 overflow-hidden relative">
+          {/* Enhanced Holographic overlay effect */}
+          <div 
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{
+              background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%), linear-gradient(-45deg, transparent 30%, rgba(255,217,61,0.4) 50%, transparent 70%)',
+              animation: 'shimmer 3s ease-in-out infinite'
+            }}
+          />
           {/* Type Badges */}
           <div className="flex justify-center gap-2 mb-3">
             {pokemon.types.map((type, index) => (
@@ -223,7 +222,7 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
                     <img
                       src={pokemon.sprites.front_default}
                       alt={pokemon.name}
-                      className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
+                      className="w-32 h-32 sm:w-32 sm:h-32 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
                       style={{
                         filter: 'drop-shadow(0 0 20px rgba(255, 217, 61, 0.5)) brightness(1.1) contrast(1.25) saturate(1.1)'
                       }}
@@ -240,7 +239,7 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
           </div>
 
           {/* Pokemon Physical Info */}
-          <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded-md p-2 pb-4 mb-2 border-2 border-red-200 shadow-sm">
+          {/* <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded-md p-2 pb-4 mb-2 border-2 border-red-200 shadow-sm">
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div className="text-center">
                 <div className="font-bold text-red-600">Height</div>
@@ -255,11 +254,11 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
                 <div className="text-gray-800 font-semibold">{pokemon.base_experience}</div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* All Pokemon Stats */}
           <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-md p-3 text-white mb-2 border-4 border-yellow-400">
-            <h4 className="text-center font-bold text-xs mb-2 text-yellow-400 flex items-center justify-center gap-1">
+            {/* <h4 className="text-center font-bold text-xs mb-2 text-yellow-400 flex items-center justify-center gap-1">
               ⚔️ BATTLE STATISTICS ⚔️
             </h4>
             <div className="space-y-1.5">
@@ -289,10 +288,10 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
             
             {/* Additional Stats */}
-            <div className="mt-2 pt-2 border-t-2 border-yellow-400">
+            <div className="mt-2 pt-2 border-t-2 border-yellow-400 ">
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-gray-700/50 rounded-md p-1.5">
                   <div className="text-yellow-300 text-xs font-bold mb-0.5">Base Experience</div>
@@ -313,7 +312,7 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
               </div>
             </div>
 
-            {/* Type Effectiveness */}
+            {/* Type Effectiveness
             <div className="mt-2 pt-2 border-t-2 border-yellow-400">
               <div className="text-yellow-300 text-xs font-bold mb-1 text-center">TYPE EFFECTIVENESS</div>
               <div className="flex flex-wrap justify-center gap-1">
@@ -326,18 +325,18 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Footer with Evolution Branding */}
-          <div className="mt-auto bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-b-md p-2 text-center border-2 border-white">
+          {/* <div className="mt-auto bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-b-md p-2 text-center border-2 border-white">
             <div className="text-white text-xs font-bold flex items-center justify-center gap-1">
               🔄 EVOLUTION CARD 🔄
             </div>
             <div className="text-red-100 text-xs mt-0.5 font-semibold">
               Stage {pokemon.stage} Evolution • #{pokemon.id}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Enhanced Corner Decorations */}
