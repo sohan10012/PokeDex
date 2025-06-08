@@ -98,7 +98,8 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const totalStats = pokemon.stats.reduce((sum, stat) => sum + stat.base_stat, 0);
 
   return (
-    <div className="max-w-sm mx-auto">
+   
+    <div className="max-w-sm mx-4 sm:mx-auto p-1 rounded-md shadow-2xl">
       {/* Card Container with Pokemon Logo Colors */}
       <div 
         className="relative rounded-md shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
@@ -145,16 +146,16 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 flex-1 flex flex-col bg-gradient-to-b from-white via-yellow-50 to-red-50">
+        <div className="p-3 sm:p-4 flex-1 flex flex-col bg-gradient-to-b from-white via-yellow-50 to-red-50">
           {/* Type Badges */}
-          <div className="flex justify-center gap-2 mb-4">
+          <div className="flex flex-wrap justify-center gap-2 mb-3">
             {pokemon.types.map((type, index) => (
               <div
                 key={index}
-                className={`bg-gradient-to-r ${getTypeColor(type.type.name)} px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border-2 border-white`}
+                className={`bg-gradient-to-r ${getTypeColor(type.type.name)} px-3 py-1 rounded-full shadow-lg flex items-center gap-1 border-2 border-white`}
               >
-                <span className="text-sm">{getTypeSymbol(type.type.name)}</span>
-                <span className="text-white font-bold text-sm uppercase tracking-wider">
+                <span className="text-xs sm:text-sm">{getTypeSymbol(type.type.name)}</span>
+                <span className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider">
                   {type.type.name}
                 </span>
               </div>
@@ -162,31 +163,31 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
           </div>
 
           {/* Enhanced Pokemon Image Container */}
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             {/* Outer decorative border */}
             <div className="bg-gradient-to-br from-yellow-400 via-red-400 to-yellow-400 p-1 rounded-2xl shadow-xl">
               {/* Inner image container */}
-              <div className="bg-gradient-to-br from-blue-100 via-white to-yellow-100 rounded-xl p-6 border-4 border-white shadow-inner relative">
+              <div className="bg-gradient-to-br from-blue-100 via-white to-yellow-100 rounded-xl p-4 sm:p-6 border-4 border-white shadow-inner relative">
                 {/* Energy circuit pattern */}
                 <div className="absolute inset-0 opacity-20">
                   <div className="grid grid-cols-6 gap-2 h-full w-full p-3">
                     {[...Array(24)].map((_, i) => (
                       <div key={i} className="relative">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" 
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-yellow-400 rounded-full animate-pulse" 
                              style={{animationDelay: `${i * 0.1}s`}} />
-                        {i % 6 !== 5 && <div className="absolute top-1 left-2 w-4 h-0.5 bg-yellow-300" />}
+                        {i % 6 !== 5 && <div className="absolute top-0.5 sm:top-1 left-1.5 sm:left-2 w-3 sm:w-4 h-0.5 bg-yellow-300" />}
                       </div>
                     ))}
                   </div>
                 </div>
                 
-                {/* Pokemon Image - Large */}
+                {/* Pokemon Image */}
                 <div className="relative z-10 flex justify-center">
-                  <div className="bg-white rounded-full p-4 shadow-lg border-4 border-yellow-300">
+                  <div className="bg-white rounded-full p-3 sm:p-4 shadow-lg border-4 border-yellow-300">
                     <img
                       src={pokemon.sprites.front_default}
                       alt={pokemon.name}
-                      className="w-40 h-40 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
+                      className="w-32 h-32 sm:w-40 sm:h-40 object-contain drop-shadow-2xl filter brightness-110 contrast-125 saturate-110"
                       style={{
                         filter: 'drop-shadow(0 0 20px rgba(255, 217, 61, 0.5)) brightness(1.1) contrast(1.25) saturate(1.1)'
                       }}
@@ -220,116 +221,26 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
             </div>
           </div>
 
-          {/* All Pokemon Stats */}
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 text-white mb-3 border-4 border-yellow-400">
-            <h4 className="text-center font-bold text-sm mb-3 text-yellow-400 flex items-center justify-center gap-2">
-              ⚔️ BATTLE STATISTICS ⚔️
-            </h4>
-            <div className="space-y-2">
-              {pokemon.stats.map((statData) => {
-                const statName = statData.stat.name;
-                const value = statData.base_stat;
-                const displayName = statName.split('-').map(word => 
-                  word.charAt(0).toUpperCase() + word.slice(1)
-                ).join(' ');
-                
-                return (
-                  <div key={statName} className="flex items-center gap-2">
-                    <span className="text-xs font-semibold w-16 text-yellow-300 uppercase">
-                      {displayName.substring(0, 6)}
-                    </span>
-                    <div className="flex-1 bg-gray-700 rounded-full h-3 relative overflow-hidden border border-gray-600">
-                      <div 
-                        className={`h-full ${getStatColor(statName)} transition-all duration-700 rounded-full relative`}
-                        style={{ width: `${getStatBar(value)}%` }}
-                      >
-                        <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                      </div>
-                    </div>
-                    <span className="text-xs font-bold w-8 text-right text-white bg-gray-700 px-1 rounded">
-                      {value}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            
-            {/* Additional Stats */}
-            <div className="mt-4 pt-4 border-t-2 border-yellow-400">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-gray-700/50 rounded-lg p-2">
-                  <div className="text-yellow-300 text-xs font-bold mb-1">Base Experience</div>
-                  <div className="text-white text-sm font-semibold">{pokemon.base_experience}</div>
-                </div>
-                <div className="bg-gray-700/50 rounded-lg p-2">
-                  <div className="text-yellow-300 text-xs font-bold mb-1">Total Stats</div>
-                  <div className="text-white text-sm font-semibold">{totalStats}</div>
-                </div>
-                <div className="bg-gray-700/50 rounded-lg p-2">
-                  <div className="text-yellow-300 text-xs font-bold mb-1">Height</div>
-                  <div className="text-white text-sm font-semibold">{(pokemon.height / 10).toFixed(1)}m</div>
-                </div>
-                <div className="bg-gray-700/50 rounded-lg p-2">
-                  <div className="text-yellow-300 text-xs font-bold mb-1">Weight</div>
-                  <div className="text-white text-sm font-semibold">{(pokemon.weight / 10).toFixed(1)}kg</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Type Effectiveness */}
-            <div className="mt-4 pt-4 border-t-2 border-yellow-400">
-              <div className="text-yellow-300 text-xs font-bold mb-2 text-center">TYPE EFFECTIVENESS</div>
-              <div className="flex flex-wrap justify-center gap-2">
-                {pokemon.types.map((type, index) => (
-                  <div
-                    key={index}
-                    className={`bg-gradient-to-r ${getTypeColor(type.type.name)} px-3 py-1 rounded-full text-xs font-bold text-white shadow-md border border-white/20`}
-                  >
-                    {type.type.name.toUpperCase()}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Footer with Pokemon Branding */}
-          <div className="mt-auto bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-lg p-3 text-center border-2 border-white">
-            <div className="text-white text-sm font-bold flex items-center justify-center gap-2">
-              ⚡ POKÉMON TRADING CARD ⚡
-            </div>
-            <div className="text-red-100 text-xs mt-1 font-semibold">
-              Gotta Catch 'Em All! • #{pokemon.id}
-            </div>
-          </div>
+          {/* Enhanced Corner Decorations */}
+          <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-yellow-400 z-20 rounded-tl-md" />
+          <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-yellow-400 z-20 rounded-tr-md" />
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-yellow-400 z-20 rounded-bl-md" />
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-yellow-400 z-20 rounded-br-md" />
         </div>
 
-        {/* Enhanced Corner Decorations */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-yellow-400 z-20 rounded-tl-md" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-yellow-400 z-20 rounded-tr-md" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-yellow-400 z-20 rounded-bl-md" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-yellow-400 z-20 rounded-br-md" />
-
-        {/* Pokeball decoration - Moved to bottom right with proper z-index */}
-        <div className="absolute bottom-4 right-4 w-8 h-8 opacity-30 z-10">
-          <div className="w-full h-full bg-red-500 rounded-full relative border-2 border-white">
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white transform -translate-y-1/2" />
-            <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-gray-300" />
-          </div>
-        </div>
+        <style jsx>{`
+          @keyframes shimmer {
+            0%, 100% { 
+              opacity: 0.2; 
+              transform: translateX(-100%) rotate(45deg);
+            }
+            50% { 
+              opacity: 0.4; 
+              transform: translateX(100%) rotate(45deg);
+            }
+          }
+        `}</style>
       </div>
-
-      <style jsx>{`
-        @keyframes shimmer {
-          0%, 100% { 
-            opacity: 0.2; 
-            transform: translateX(-100%) rotate(45deg);
-          }
-          50% { 
-            opacity: 0.4; 
-            transform: translateX(100%) rotate(45deg);
-          }
-        }
-      `}</style>
     </div>
   );
 }

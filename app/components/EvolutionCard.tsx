@@ -240,15 +240,15 @@ export default function EvolutionCard({ pokemon }: EvolutionCardProps) {
           </div>
 
           {/* Pokemon Physical Info */}
-          <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded-md p-2 mb-2 border-2 border-red-200 shadow-sm">
+          <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded-md p-2 pb-4 mb-2 border-2 border-red-200 shadow-sm">
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div className="text-center">
                 <div className="font-bold text-red-600">Height</div>
-                <div className="text-gray-800 font-semibold">{(pokemon.height / 10).toFixed(1)}m</div>
+                <div className="text-gray-800 font-semibold">{pokemon.height / 10}m</div>
               </div>
               <div className="text-center border-l border-r border-red-300">
                 <div className="font-bold text-red-600">Weight</div>
-                <div className="text-gray-800 font-semibold">{(pokemon.weight / 10).toFixed(1)}kg</div>
+                <div className="text-gray-800 font-semibold">{pokemon.weight / 10}kg</div>
               </div>
               <div className="text-center">
                 <div className="font-bold text-red-600">Base EXP</div>

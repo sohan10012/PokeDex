@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'PokéSearch - Find Your Favorite Pokémon',
-  description: 'Search and discover Pokémon with their stats and evolution chains',
+  title: 'Pokédex',
+  description: 'A modern Pokédex application',
 };
 
 export default function RootLayout({
@@ -16,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

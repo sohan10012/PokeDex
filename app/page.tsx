@@ -91,7 +91,7 @@ function SearchBar({ onSearch, loading }: { onSearch: (name: string) => void; lo
               type="button"
               onClick={() => onSearch(searchTerm)}
               disabled={loading || !searchTerm.trim()}
-              className="px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors border-l-2 border-blue-200"
+              className="px-6 py-3 text-white font-bold hover:text-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? '⚡' : '🔍'}
             </button>
@@ -194,7 +194,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 overflow-x-hidden">
       {/* Background Pattern */}
       <div 
         className="fixed inset-0 opacity-10"
@@ -212,7 +212,7 @@ export default function Home() {
                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full border-2 border-gray-800"></div>
               </div>
               <h1 
-                className="text-2xl sm:text-4xl font-bold text-yellow-300 drop-shadow-2xl tracking-wider"
+                className="text-xl sm:text-4xl font-bold text-yellow-300 drop-shadow-2xl tracking-wider"
                 style={{ 
                   fontFamily: 'Impact, Arial Black, sans-serif',
                   textShadow: '3px 3px 0px #1e40af, -1px -1px 0px #1e40af, 1px -1px 0px #1e40af, -1px 1px 0px #1e40af'
@@ -227,10 +227,10 @@ export default function Home() {
       </nav>
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Search Section */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8 drop-shadow-lg">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-2xl font-bold text-white mb-4 sm:mb-6 drop-shadow-lg">
             Search for any Pokémon
           </h2>
           <SearchBar onSearch={searchPokemon} loading={loading} />
@@ -369,7 +369,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Pokemon Card */}
               <div className="lg:col-span-1 flex items-center justify-center">
-                <div className="w-full max-w-sm bg-gradient-to-r from-yellow-400 to-yellow-300 p-1 rounded-md shadow-2xl">
+                <div className="w-full max-w-sm  p-1 rounded-md shadow-2xl">
                   <PokemonCard pokemon={pokemon} />
                 </div>
               </div>
@@ -413,15 +413,15 @@ export default function Home() {
                     <h3 className="text-base sm:text-lg font-bold text-yellow-300 mb-2 sm:mb-3">Physical Characteristics</h3>
                     <div className="grid grid-cols-3 gap-3">
                       <div className="bg-gray-700/50 rounded-lg p-3 text-center">
-                        <div className="text-gray-300 text-xs mb-1">Height</div>
+                        <div className="text-yellow-300 text-xs font-bold mb-1">Height</div>
                         <div className="text-white font-bold text-base sm:text-lg">{(pokemon.height / 10).toFixed(1)}m</div>
                       </div>
                       <div className="bg-gray-700/50 rounded-lg p-3 text-center">
-                        <div className="text-gray-300 text-xs mb-1">Weight</div>
+                        <div className="text-yellow-300 text-xs font-bold mb-1">Weight</div>
                         <div className="text-white font-bold text-base sm:text-lg">{(pokemon.weight / 10).toFixed(1)}kg</div>
                       </div>
                       <div className="bg-gray-700/50 rounded-lg p-3 text-center">
-                        <div className="text-gray-300 text-xs mb-1">Base EXP</div>
+                        <div className="text-yellow-300 text-xs font-bold mb-1">Base EXP</div>
                         <div className="text-white font-bold text-base sm:text-lg">{pokemon.base_experience}</div>
                       </div>
                     </div>
